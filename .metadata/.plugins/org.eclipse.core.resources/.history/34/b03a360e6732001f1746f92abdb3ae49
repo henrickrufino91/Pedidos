@@ -1,0 +1,27 @@
+package br.com.projeto.pedidos.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.projeto.pedidos.service.PerfilService;
+
+@RestController
+public class PerfilController {
+
+	
+	@Autowired
+	private PerfilService perfilService;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

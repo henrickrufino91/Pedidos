@@ -1,0 +1,36 @@
+package br.com.projeto.pedidos.model;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class ItemPedido {
+
+	
+	private Integer quantidade;
+	
+	private Double preco;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "pedido_codigo")
+	private Pedido pedido;
+	
+	
+	@OneToMany(mappedBy = "cod_produto")
+	private List<Produto> produtos;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

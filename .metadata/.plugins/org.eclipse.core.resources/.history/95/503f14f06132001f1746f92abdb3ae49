@@ -1,0 +1,77 @@
+package br.com.projeto.rh.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.projeto.pedidos.model.Produto;
+import br.com.projeto.pedidos.repository.ProdutoRepository;
+
+
+
+@Service
+public class ProdutoService {
+
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
+	
+	
+	
+	public Produto inserir(Produto produto) {
+		
+		return produtoRepository.save(produto);
+	}
+	
+	
+	
+	public void excluir(Integer codigo) {
+		
+		produtoRepository.deleteById(codigo);
+	}
+	
+	
+	
+	public List<Usuario> listar(){
+		
+		return usuarioRepository.findAll();
+	}
+	
+	
+	public Usuario listarPorId(Integer codigo) {
+		
+		return usuarioRepository.findById(codigo).get();
+	}
+	
+	
+	public Usuario editar(Integer codigo) {
+		
+		  Optional<Usuario> us = usuarioRepository.findById(codigo);
+			
+		  Usuario usuario = null;
+		  
+		  if (us.isPresent()) {
+			  
+			  usuario = us.get();
+			  
+		  }else {
+			  
+			  throw new RuntimeException(" Usuario não existe :: " + codigo);
+		  }
+		  
+		  return usuario;
+		}
+	
+	
+	
+	public Usuario login(String email,String senha) {
+		
+		return usuarioRepository.buscarLogin(email, senha);
+	}
+	
+	
+	
+}

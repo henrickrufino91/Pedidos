@@ -1,0 +1,29 @@
+package br.com.projeto.pedidos.model;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class Produto {
+
+	
+	
+	
+	@OneToMany(mappedBy = "cod_produto")
+	private List<ItemPedido> itemPedidos;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

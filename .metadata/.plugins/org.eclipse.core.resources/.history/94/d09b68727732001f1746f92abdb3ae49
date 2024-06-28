@@ -1,0 +1,36 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.Usuario;
+
+public class UsuarioDTO {
+
+	
+	private Integer codUsuario;
+	
+	
+	private String nome;
+
+
+	public UsuarioDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public UsuarioDTO(Usuario usuario) {
+		super();
+		this.codUsuario = usuario.getCodUsuario();
+		this.nome = usuario.getNome();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

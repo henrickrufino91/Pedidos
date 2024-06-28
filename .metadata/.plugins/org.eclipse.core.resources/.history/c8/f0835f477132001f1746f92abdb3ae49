@@ -1,0 +1,28 @@
+package br.com.projeto.pedidos.dto;
+
+
+
+public class PedidoDTO {
+
+	
+	private Integer codPedido;
+	
+	private Cliente cliente;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,25 @@
+package br.com.projeto.pedidos.model;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Produto {
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

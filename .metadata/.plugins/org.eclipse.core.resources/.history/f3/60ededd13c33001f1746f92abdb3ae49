@@ -1,0 +1,91 @@
+package br.com.projeto.pedidos.model;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Embeddable
+public class ItemPedidoPK implements Serializable {
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@EqualsAndHashCode.Include
+	@Column(name = "codProduto")
+    private Integer codProduto;
+
+	@EqualsAndHashCode.Include
+    @Column(name = "codPedido")
+    private Integer codPedido;
+
+    
+    
+    
+    
+    
+	public ItemPedidoPK() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public ItemPedidoPK(Integer codProduto, Integer codPedido) {
+		super();
+		this.codProduto = codProduto;
+		this.codPedido = codPedido;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codPedido, codProduto);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemPedidoPK other = (ItemPedidoPK) obj;
+		return Objects.equals(codPedido, other.codPedido) && Objects.equals(codProduto, other.codProduto);
+	}
+
+
+	public Integer getCodProduto() {
+		return codProduto;
+	}
+
+	public void setCodProduto(Integer codProduto) {
+		this.codProduto = codProduto;
+	}
+
+	public Integer getCodPedido() {
+		return codPedido;
+	}
+
+	public void setCodPedido(Integer codPedido) {
+		this.codPedido = codPedido;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemPedidoPK [codProduto=" + codProduto + ", codPedido=" + codPedido + "]";
+	}
+	
+	
+}

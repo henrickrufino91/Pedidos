@@ -1,0 +1,94 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Produto;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class ItemPedidoDTO {
+
+	
+	private Integer quantidade;
+	
+	private ProdutoDTO produtoDTO;
+	
+	private PedidoDTO pedidoDTO;
+	
+	private UsuarioDTO usuarioDTO;
+
+	
+	
+	public ItemPedidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public ItemPedidoDTO(ItemPedido itemPedido) {
+		super();
+		this.quantidade = itemPedido.getQuantidade();
+		this.produtoDTO = new ProdutoDTO(itemPedido.getProduto());
+		this.pedidoDTO = new PedidoDTO(itemPedido.getPedido());
+		this.usuarioDTO = new UsuarioDTO(itemPedido.getPedido().getUsuario());
+	}
+
+
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+
+
+	public ProdutoDTO getProdutoDTO() {
+		return produtoDTO;
+	}
+
+
+
+	public void setProdutoDTO(ProdutoDTO produtoDTO) {
+		this.produtoDTO = produtoDTO;
+	}
+
+
+
+	public PedidoDTO getPedidoDTO() {
+		return pedidoDTO;
+	}
+
+
+
+	public void setPedidoDTO(PedidoDTO pedidoDTO) {
+		this.pedidoDTO = pedidoDTO;
+	}
+
+
+
+	public UsuarioDTO getUsuarioDTO() {
+		return usuarioDTO;
+	}
+
+
+
+	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+		this.usuarioDTO = usuarioDTO;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "ItemPedidoDTO [quantidade=" + quantidade + ", produtoDTO=" + produtoDTO + ", pedidoDTO=" + pedidoDTO
+				+ ", usuarioDTO=" + usuarioDTO + "]";
+	}
+
+	
+	
+}

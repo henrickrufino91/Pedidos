@@ -1,0 +1,84 @@
+package br.com.projeto.pedidos.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class PedidoDTO {
+
+	
+	private Integer codPedido;
+	
+	private UsuarioDTO usuario;
+	
+	private LocalDate dataPedido;
+	
+	private List<ItemPedidoDTO> itemPedidos;
+
+	public PedidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PedidoDTO(Integer codPedido, UsuarioDTO usuario, LocalDate dataPedido) {
+		super();
+		this.codPedido = codPedido;
+		this.usuario = usuario;
+		this.dataPedido = dataPedido;
+		
+	}
+	
+	
+	public PedidoDTO(Pedido pedido) {
+		super();
+		this.codPedido = pedido.getCodPedido();
+		this.usuario = new UsuarioDTO(pedido.getUsuario());
+		this.dataPedido = pedido.getDataPedido();
+				
+		for (ItemPedido item: pedido.getItemPedidos()) {
+			
+			ItemPedidoDTO dto = new ItemPedidoDTO(item);
+			itemPedidos.add(dto);
+		}
+		
+		
+		
+	}
+
+	public Integer getCodPedido() {
+		return codPedido;
+	}
+
+	public void setCodPedido(Integer codPedido) {
+		this.codPedido = codPedido;
+	}
+
+	public UsuarioDTO getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioDTO usuario) {
+		this.usuario = usuario;
+	}
+
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	public List<ItemPedidoDTO> getItemPedidos() {
+		return itemPedidos;
+	}
+
+	public void setItemPedidos(List<ItemPedidoDTO> itemPedidos) {
+		this.itemPedidos = itemPedidos;
+	}
+	
+	
+}

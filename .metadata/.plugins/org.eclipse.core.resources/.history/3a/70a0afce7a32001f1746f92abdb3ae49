@@ -1,0 +1,39 @@
+package br.com.projeto.pedidos.dto;
+
+
+public class ProdutoDTO {
+
+	
+	private Integer codProduto;
+	
+	private String nome;
+	
+	private String descricao;
+	
+	private Double preco;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

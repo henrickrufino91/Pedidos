@@ -1,0 +1,42 @@
+package br.com.projeto.pedidos.model;
+
+import java.util.List;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+
+
+@Entity
+public class ItemPedido {
+
+	
+	@EmbeddedId
+    ItemPedidoPK id;
+	
+	
+	private Integer quantidade;
+	
+	
+	@ManyToOne
+    @MapsId("codPedido")
+	@JoinColumn(name = "pedido_codigo")
+	private Pedido pedido;
+	
+	
+	@ManyToOne
+    @MapsId("codProduto")
+	@JoinColumn(name = "produto_codigo")
+	private Produto produto;
+	
+	int rating;
+	
+	
+	
+	
+	
+	
+	
+}

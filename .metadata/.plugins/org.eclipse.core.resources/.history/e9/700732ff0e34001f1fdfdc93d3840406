@@ -1,0 +1,138 @@
+package br.com.projeto.pedidos.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.pedidos.dto.PedidoDTO;
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Usuario;
+import br.com.projeto.pedidos.service.PedidoService;
+import br.com.projeto.pedidos.service.ProdutoService;
+import br.com.projeto.pedidos.service.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+@RestController
+public class PedidoController {
+
+	
+	@Autowired
+	private PedidoService pedidoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private ProdutoService produtoService;
+		
+	
+	
+	@GetMapping("/novoPedido")
+	public ModelAndView novo(HttpServletRequest request) {
+		
+		ModelAndView mv = new ModelAndView("novoPedido");
+		mv.addObject("pedido", new Pedido());
+		mv.addObject("a",pedidoService.GETcodPedido() );
+		mv.addObject("user", request.getSession().getAttribute("usuarioLogado"));
+		
+				
+		mv.addObject("usuarios", usuarioService.listar());
+		
+		return mv;
+	}
+	
+	
+	@PostMapping("/salvarPedido")
+	public ModelAndView salvar(@Valid Pedido pedido,@Valid ItemPedido itemPedido) {
+		
+		ModelAndView mv = new ModelAndView("novoItemPedido");
+		mv.addObject("itemPedido", itemPedido);
+		mv.addObject("produtos", produtoService.listar());
+		mv.addObject("pedidos", pedidoService.listar());
+		mv.addObject("pedido", pedido);
+		pedidoService.inserir(pedido);
+				
+		return mv;
+	}
+	
+	@GetMapping("/editarPedido")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarPedido");
+    
+        Pedido pedido = pedidoService.listarPorId(codigo);
+        mv.addObject("pedido",  pedido);
+        mv.addObject("usuarios",  usuarioService.listar());
+       
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/removerPedido")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarPedidos");
+		
+		Pedido pedido = pedidoService.listarPorId(codigo);
+		pedidoService.excluir(pedido);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/listarPedidos")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarPedidos");
+        
+        mv.addObject("pedidos",  pedidoService.listar());
+        
+        mv.addObject("pedido",  new Pedido());
+        
+        return mv;
+   
+    }
+	
+	
+	@GetMapping(value = "/pesquisar")
+	public ModelAndView pesquisa() {
+		
+		ModelAndView mv = new ModelAndView("pesquisa");
+		
+		
+		return mv;
+	}	
+	
+	
+	@PostMapping(value = "/pesquisarPorCodigo")
+	public ModelAndView lista(@RequestParam("codigo") Integer codigo) {
+		
+		ModelAndView mv = new ModelAndView("listarPedido");
+		mv.addObject("pedidos", pedidoService.listar(codigo));
+		mv.addObject("pedido", new Pedido());
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,31 @@
+package br.com.projeto.pedidos.model;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Pedido {
+	
+	
+	private Integer codPedido;
+	
+	
+	private LocalDate dataPedido;	
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_codigo")
+	private Usuario usuario;
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,98 @@
+package br.com.projeto.pedidos.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.pedidos.model.Produto;
+import br.com.projeto.pedidos.service.ProdutoService;
+
+@RestController
+public class ProdutoController {
+
+	
+	@Autowired
+	private ProdutoService produtoService;
+	
+	
+	
+	@GetMapping("/novoProduto")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoProduto");
+		mv.addObject("produto", new Produto());
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("/salvarProduto")
+	public ModelAndView salvar(@Valid Produto produto) {
+		
+		ModelAndView mv = new ModelAndView("redirect:/novoProduto");
+		mv.addObject("produto", produto);
+		produtoService.inserir(produto);
+				
+		return mv;
+	}
+	
+	@GetMapping("/editarProduto")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarProduto");
+    
+        Usuario usuario = usuarioService.listarPorId(codigo);
+        mv.addObject("usuario",  usuario);
+        mv.addObject("perfis",  perfilService.listar());
+       
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/removerUsuario")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarUsuarios");
+		
+		Usuario usuario = usuarioService.listarPorId(codigo);
+		usuarioService.excluir(usuario);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/listarUsuarios")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarUsuarios");
+        
+        mv.addObject("usuarios",  usuarioService.listar());
+        mv.addObject("usuario",  new Usuario());
+        
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

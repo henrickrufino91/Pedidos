@@ -1,0 +1,52 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Produto;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class ItemPedidoDTO {
+
+	
+	private Integer quantidade;
+	
+	private ProdutoDTO produtoDTO;
+	
+	private PedidoDTO pedidoDTO;
+	
+	private UsuarioDTO usuarioDTO;
+
+	
+	
+	public ItemPedidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public ItemPedidoDTO(ItemPedido itemPedido) {
+		super();
+		this.quantidade = quantidade;
+		this.produtoDTO = produtoDTO;
+		this.pedidoDTO = pedidoDTO;
+		this.usuarioDTO = usuarioDTO;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

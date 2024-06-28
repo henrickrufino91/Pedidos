@@ -1,0 +1,27 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Produto;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class ItemPedidoDTO {
+
+	
+	
+	private Produto produto;
+	
+	private Pedido pedido;
+	
+	private Usuario usuario;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

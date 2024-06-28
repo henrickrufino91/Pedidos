@@ -1,0 +1,28 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.Usuario;
+
+public class PedidoDTO {
+
+	
+	private Integer codPedido;
+	
+	private Usuario usuario;
+	
+	private LocalDate dataPedido;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

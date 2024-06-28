@@ -1,0 +1,90 @@
+package br.com.projeto.pedidos.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.pedidos.model.Perfil;
+import br.com.projeto.pedidos.service.PerfilService;
+
+@RestController
+public class PerfilController {
+
+	
+	@Autowired
+	private PerfilService perfilService;
+	
+	
+	@GetMapping("/novoPerfil")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoPerfil");
+		mv.addObject("perfil", new Perfil());
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("/salvarPerfil")
+	public ModelAndView salvar(@Valid Usuario usuario) {
+		
+		ModelAndView mv = new ModelAndView("redirect:/novoUsuario");
+		mv.addObject("usuario", usuario);
+		usuarioService.inserir(usuario);
+				
+		return mv;
+	}
+	
+	@GetMapping("/editarUsuario")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarUsuario");
+    
+        Usuario usuario = usuarioService.listarPorId(codigo);
+        mv.addObject("usuario",  usuario);
+        mv.addObject("perfis",  perfilService.listar());
+       
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/removerUsuario")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarUsuarios");
+		
+		Usuario usuario = usuarioService.listarPorId(codigo);
+		usuarioService.excluir(usuario);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/listarUsuarios")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarUsuarios");
+        
+        mv.addObject("usuarios",  usuarioService.listar());
+        mv.addObject("usuario",  new Usuario());
+        
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,76 @@
+package br.com.projeto.pedidos.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Pedido;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class PedidoDTO {
+
+	
+	private Integer codPedido;
+	
+	private Usuario usuario;
+	
+	private LocalDate dataPedido;
+	
+	private List<ItemPedidoDTO> itemPedidos;
+
+	public PedidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+		
+	public PedidoDTO(Pedido pedido) {
+		super();
+		this.codPedido = pedido.getCodPedido();
+		this.usuario = pedido.getUsuario();
+		this.dataPedido = pedido.getDataPedido();
+				
+		for (ItemPedido item: pedido.getItemPedidos()) {
+			
+			ItemPedidoDTO dto = new ItemPedidoDTO(item);
+			itemPedidos.add(dto);
+		}
+		
+		
+		
+	}
+
+	public Integer getCodPedido() {
+		return codPedido;
+	}
+
+	public void setCodPedido(Integer codPedido) {
+		this.codPedido = codPedido;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	public List<ItemPedidoDTO> getItemPedidos() {
+		return itemPedidos;
+	}
+
+	public void setItemPedidos(List<ItemPedidoDTO> itemPedidos) {
+		this.itemPedidos = itemPedidos;
+	}
+	
+	
+}

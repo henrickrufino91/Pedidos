@@ -1,0 +1,101 @@
+package br.com.projeto.pedidos.controller;
+
+import java.security.NoSuchAlgorithmException;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.pedidos.exception.ServiceEXC;
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Usuario;
+import br.com.projeto.pedidos.service.ItemPedidoService;
+import br.com.projeto.pedidos.service.PedidoService;
+import br.com.projeto.pedidos.service.PerfilService;
+import br.com.projeto.pedidos.service.ProdutoService;
+import br.com.projeto.pedidos.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+
+@RestController
+public class ItemPedidoController {
+	
+	
+	@Autowired
+	private ItemPedidoService itemPedidoService;
+	
+	@Autowired
+	private ProdutoService produtoService;
+	
+	@Autowired
+	private PedidoService pedidoService;
+	
+	
+	
+	@GetMapping("/novoItemPedido")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoItemPedido");
+		mv.addObject("itemPedido", new ItemPedido());
+		mv.addObject("produtos", produtoService.listar());
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("/salvarUsuario")
+	public ModelAndView salvar(@Valid Usuario usuario) {
+		
+		ModelAndView mv = new ModelAndView("redirect:/novoUsuario");
+		mv.addObject("usuario", usuario);
+		usuarioService.inserir(usuario);
+				
+		return mv;
+	}
+	
+	@GetMapping("/editarUsuario")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarUsuario");
+    
+        Usuario usuario = usuarioService.listarPorId(codigo);
+        mv.addObject("usuario",  usuario);
+        mv.addObject("perfis",  perfilService.listar());
+       
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/removerUsuario")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarUsuarios");
+		
+		Usuario usuario = usuarioService.listarPorId(codigo);
+		usuarioService.excluir(usuario);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/listarUsuarios")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarUsuarios");
+        
+        mv.addObject("usuarios",  usuarioService.listar());
+        mv.addObject("usuario",  new Usuario());
+        
+        return mv;
+   
+    }
+	
+		
+
+}

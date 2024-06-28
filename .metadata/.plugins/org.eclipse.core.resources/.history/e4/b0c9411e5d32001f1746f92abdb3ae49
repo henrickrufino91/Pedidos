@@ -1,0 +1,26 @@
+package br.com.projeto.pedidos.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class ItemPedidoPK {
+
+	
+	@Column(name = "codProduto")
+    private Integer codProduto;
+
+    @Column(name = "codPedido")
+    private Integer codPedido;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

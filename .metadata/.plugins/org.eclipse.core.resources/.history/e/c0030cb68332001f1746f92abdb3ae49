@@ -1,0 +1,46 @@
+package br.com.projeto.pedidos.dto;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+
+
+public class ItemPedidoDTO {
+
+	
+	private Integer codProduto;
+	
+	private Integer quantidade;
+	
+	private Double preco;
+	
+	private String nome;
+	
+
+	public ItemPedidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public ItemPedidoDTO(ItemPedido itemPedido) {
+		super();
+		this.codProduto = itemPedido.getProduto().getCodProduto();
+		this.quantidade = quantidade;
+		this.preco = preco;
+		this.nome = nome;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

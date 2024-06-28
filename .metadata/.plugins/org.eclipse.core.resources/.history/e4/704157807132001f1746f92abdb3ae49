@@ -1,0 +1,32 @@
+package br.com.projeto.pedidos.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import br.com.projeto.pedidos.model.ItemPedido;
+import br.com.projeto.pedidos.model.Usuario;
+
+public class PedidoDTO {
+
+	
+	private Integer codPedido;
+	
+	private Usuario usuario;
+	
+	private LocalDate dataPedido;
+	
+	private List<ItemPedido> itemPedidos;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

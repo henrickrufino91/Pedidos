@@ -1,0 +1,21 @@
+package br.com.projeto.pedidos.model;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class ItemPedidoPK {
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

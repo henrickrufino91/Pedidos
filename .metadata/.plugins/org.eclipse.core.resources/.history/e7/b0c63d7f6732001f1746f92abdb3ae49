@@ -1,0 +1,89 @@
+package br.com.projeto.pedidos.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.pedidos.model.Perfil;
+import br.com.projeto.pedidos.service.PerfilService;
+
+@RestController
+public class PerfilController {
+
+	
+	@Autowired
+	private PerfilService perfilService;
+	
+	
+	@GetMapping("/novoPerfil")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoPerfil");
+		mv.addObject("perfil", new Perfil());
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("/salvarPerfil")
+	public ModelAndView salvar(@Valid Perfil perfil) {
+		
+		ModelAndView mv = new ModelAndView("redirect:/novoPerfil");
+		mv.addObject("perfil", perfil);
+		perfilService.inserir(perfil);
+				
+		return mv;
+	}
+	
+	@GetMapping("/editarPerfil")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarPerfil");
+    
+        Perfil perfil = perfilService.listarPorId(codigo);
+        mv.addObject("perfil",  perfil);
+              
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/removerPerfil")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarPerfis");
+		
+		Perfil perfil = perfilService.listarPorId(codigo);
+		perfilService.excluir(perfil);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/listarPerfis")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarPerfis");
+        
+        mv.addObject("perfis",  perfilService.listar());
+        mv.addObject("perfil",  new Perfil());
+        
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

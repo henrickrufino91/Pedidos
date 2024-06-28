@@ -1,0 +1,33 @@
+package br.com.projeto.pedidos.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class ItemPedido {
+
+	
+	private Integer quantidade;
+	
+	private Double preco;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "pedido_codigo")
+	private Pedido pedido;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

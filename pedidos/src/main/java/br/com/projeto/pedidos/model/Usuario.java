@@ -1,0 +1,166 @@
+package br.com.projeto.pedidos.model;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class Usuario {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer codUsuario;
+	
+	
+	private String nome;
+	
+	
+	private String email;
+	
+	
+	private String senha;
+	
+	
+	private LocalDate dataNascimento;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "perfil_codigo")
+	private Perfil perfil;
+	
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Pedido> pedidos;
+
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Usuario(Integer codUsuario, String nome, String email, String senha, LocalDate dataNascimento, Perfil perfil,
+			List<Pedido> pedidos) {
+		super();
+		this.codUsuario = codUsuario;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.dataNascimento = dataNascimento;
+		this.perfil = perfil;
+		this.pedidos = pedidos;
+	}
+
+
+	public Integer getCodUsuario() {
+		return codUsuario;
+	}
+
+
+	public void setCodUsuario(Integer codUsuario) {
+		this.codUsuario = codUsuario;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codUsuario, dataNascimento, email, nome, pedidos, perfil, senha);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(codUsuario, other.codUsuario) && Objects.equals(dataNascimento, other.dataNascimento)
+				&& Objects.equals(email, other.email) && Objects.equals(nome, other.nome)
+				&& Objects.equals(pedidos, other.pedidos) && Objects.equals(perfil, other.perfil)
+				&& Objects.equals(senha, other.senha);
+	}
+
+
+	@Override
+	public String toString() {
+		return "Usuario [codUsuario=" + codUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
+				+ ", dataNascimento=" + dataNascimento + ", perfil=" + perfil + "]";
+	}
+
+
+	
+	
+	
+}
